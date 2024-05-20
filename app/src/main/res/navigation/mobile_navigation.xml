@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_inicio">
+
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="com.example.naturetrustbank.ui.home.HomeFragment"
+        android:label="@string/menu_inicio"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.naturetrustbank.ui.perfil.PerfilFragment"
+        android:label="@string/menu_perfil"
+        tools:layout="@layout/fragment_perfil" />
+
+    <fragment
+        android:id="@+id/nav_recompensas"
+        android:name="com.example.naturetrustbank.ui.rewards.RewardsFragment"
+        android:label="@string/menu_recompensas"
+        tools:layout="@layout/fragment_rewards" />
+
+    <fragment
+        android:id="@+id/nav_acercade"
+        android:name="com.example.naturetrustbank.ui.aboutus.AboutUsFragment"
+        android:label="@string/menu_acercade"
+        tools:layout="@layout/fragment_aboutus" />
+
+    <fragment
+        android:id="@+id/nav_ajustes"
+        android:name="com.example.naturetrustbank.ui.settings.SettingsFragment"
+        android:label="@string/menu_ajustes"
+        tools:layout=""/>
+
+</navigation>
