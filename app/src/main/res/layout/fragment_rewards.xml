@@ -6,17 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".ui.rewards.RewardsFragment">
 
-    <TextView
-        android:id="@+id/text_slideshow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <FrameLayout
+        android:id="@+id/headerrewards"
+        android:layout_width="432dp"
+        android:layout_height="452dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/containerpoints"
+            android:layout_width="335dp"
+            android:layout_height="335dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_rectangle"
+            android:elevation="8dp"
+            android:padding="10dp"> <!-- Centrar este FrameLayout -->
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/puntos_recaudados"
+                android:textAlignment="center"
+                android:textColor="@color/swamp"
+                android:textSize="21sp"
+                android:translationY="20dp" />
+
+            <TextView
+                android:id="@+id/puntos_numero"
+                android:layout_width="match_parent"
+                android:layout_height="182dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/puntos_numero"
+                android:textAlignment="center"
+                android:textColor="@color/skyblue"
+                android:textSize="150sp"
+                android:translationY="25dp"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/obterner_recompensa"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:translationY="210dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/headerbackpark"
+            android:layout_width="match_parent"
+            android:layout_height="233dp"
+            android:background="@color/lightgreen">
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginBottom="345dp"
+        android:src="@drawable/ntb_monogram"
+        android:translationX="137dp"
+        android:translationY="320dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

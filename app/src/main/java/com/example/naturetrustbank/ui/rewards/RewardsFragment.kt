@@ -28,9 +28,8 @@ class RewardsFragment : Fragment() {
         _binding = FragmentRewardsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
         rewardsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
         }
         return root
     }

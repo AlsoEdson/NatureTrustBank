@@ -20,6 +20,13 @@
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
+    <string name="canjear_puntos">¡Canjear puntos!</string>
+    <string name="compartir">¡Compartir!</string>
+    <string name="puntos_recaudados">PUNTOS RECAUDADOS</string>
+    <string name="puntos_numero">000</string>
+    <string name="reclamr_puntos">¡RECLAMAR PUNTOS!</string>
+    <string name="obterner_recompensa">OBTEN RECOMPENSAS ¡YA!</string>
+    <string name="descripción_reward">Acercate a los puntos de colección más cercano y acumula puntos NTB</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
