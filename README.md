@@ -38,6 +38,6 @@ Equipo conformado por el Grupo 6 del curso de Interacción Hombre Computador (IH
 1. Ostos Torres, Deysi Analí.
 2. Gutierrez Campos Edson Luis
 3. Gamboa Noa, Rubi Julissa
-4. Rojas Huamaní Percy Ares
+4. Rojas Huamaní, Percy Ares
 5. Asencios Gutierrez Erick Fabrizio
 6. Saavedra Valverde, Joel Ronaldo
