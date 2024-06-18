@@ -23,9 +23,10 @@
     <string name="canjear_puntos">¡Canjear puntos!</string>
     <string name="compartir">¡Compartir!</string>
     <string name="puntos_recaudados">PUNTOS RECAUDADOS</string>
-    <string name="puntos_numero">000</string>
+    <string name="puntos_numero">0000</string>
     <string name="reclamr_puntos">¡RECLAMAR PUNTOS!</string>
     <string name="obterner_recompensa">OBTEN RECOMPENSAS ¡YA!</string>
+    <string name="historial_puntos">Historial de puntos recaudados"</string>
     <string name="descripción_reward">Acercate a los puntos de colección más cercano y acumula puntos NTB</string>
 
     <!-- Sync Preferences -->

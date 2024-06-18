@@ -1,82 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.rewards.RewardsFragment">
 
-    <FrameLayout
-        android:id="@+id/headerrewards"
-        android:layout_width="432dp"
-        android:layout_height="452dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- View for the background rectangle -->
+    <View
+        android:id="@+id/blackOverlay"
+        android:layout_width="0dp"
+        android:layout_height="195dp"
+        android:background="@color/lightgreen"
+        android:alpha="1"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/containerpoints"
-            android:layout_width="335dp"
-            android:layout_height="335dp"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded_rectangle"
-            android:elevation="8dp"
-            android:padding="10dp"> <!-- Centrar este FrameLayout -->
+    <!-- Container for the main content -->
+    <LinearLayout
+        android:id="@+id/pointsContainer"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:elevation="8dp"
+        android:background="@drawable/rounded_rectangle"
+        android:translationY="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintWidth_default="wrap"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHeight_percent="0.3">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/puntos_recaudados"
-                android:textAlignment="center"
-                android:textColor="@color/swamp"
-                android:textSize="21sp"
-                android:translationY="20dp" />
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/puntos_recaudados"
+            android:textSize="22sp"
+            android:textColor="@color/swamp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="8dp" />
 
-            <TextView
-                android:id="@+id/puntos_numero"
-                android:layout_width="match_parent"
-                android:layout_height="182dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/puntos_numero"
-                android:textAlignment="center"
-                android:textColor="@color/skyblue"
-                android:textSize="150sp"
-                android:translationY="25dp"
-                app:layout_constraintBottom_toBottomOf="parent" />
+        <TextView
+            android:id="@+id/textViewPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="@string/puntos_numero"
+            android:textColor="@color/skyblue"
+            android:textSize="110sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/obterner_recompensa"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:translationY="210dp" />
+        <TextView
+            android:id="@+id/textViewSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/obterner_recompensa"
+            android:textSize="20sp"
+            android:textColor="@color/swamp"
+            android:gravity="center"
+            android:padding="8dp" />
 
-        </FrameLayout>
+    </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/headerbackpark"
+    <!-- Button container at the bottom -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationY="-200sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp">
+
+        <!-- Two buttons above big button -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="233dp"
-            android:background="@color/lightgreen">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        </FrameLayout>
-    </FrameLayout>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/canjear_puntos"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_buttom_changepoints" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginBottom="345dp"
-        android:src="@drawable/ntb_monogram"
-        android:translationX="137dp"
-        android:translationY="320dp" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/compartir"
+                android:textColor="@color/swamp"
+                android:textSize="16sp"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_buttom_share" />
+
+        </LinearLayout>
+
+        <!-- Big button -->
+        <Button
+            android:id="@+id/bigButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reclamr_puntos"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_buttom_scan" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonContainer3"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:translationY="-40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/historial_puntos"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:padding="8dp" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:stretchColumns="0,1,2"
+            app:layout_constraintTop_toBottomOf="@id/pointsContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Encabezado de la tabla -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N° Puntos"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lugar"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="8dp" />
+            </TableRow>
+
+            <!-- Filas de datos de ejemplo -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="120"
+                    android:textSize="16sp"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2024-06-18"
+                    android:textSize="16sp"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UNMSM"
+                    android:textSize="16sp"
+                    android:padding="8dp" />
+            </TableRow>
+
+            <!-- Otras filas de datos según sea necesario -->
+        </TableLayout>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
