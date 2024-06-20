@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1064434505476",
+    "firebase_url": "https://naturetrustbank-default-rtdb.firebaseio.com",
+    "project_id": "naturetrustbank",
+    "storage_bucket": "naturetrustbank.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064434505476:android:c45172f4597ba09b15e251",
+        "android_client_info": {
+          "package_name": "com.example.naturetrustbank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2xyAZOAeGXuR8C0xQjE_aMXHjz8DU01M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
