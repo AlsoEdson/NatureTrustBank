@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
     private lateinit var uid : String
-    private lateinit var usuario : Usuario
+    lateinit var usuario : Usuario
+        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
