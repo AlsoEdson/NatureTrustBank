@@ -21,8 +21,8 @@
     <!-- Container for the main content -->
     <LinearLayout
         android:id="@+id/pointsContainer"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
+        android:layout_width="330dp"
+        android:layout_height="310dp"
         android:orientation="vertical"
         android:gravity="center"
         android:elevation="8dp"
@@ -31,10 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="wrap"
-        app:layout_constraintWidth_default="wrap"
-        app:layout_constraintWidth_percent="0.8"
-        app:layout_constraintHeight_percent="0.3">
+        app:layout_constraintWidth_percent="0.8">
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -73,10 +70,10 @@
     <!-- Button container at the bottom -->
     <LinearLayout
         android:id="@+id/buttonContainer"
-        android:layout_width="320dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:translationY="-200sp"
+        android:translationY="-230sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,12 +123,13 @@
 
     </LinearLayout>
 
+    <!-- Table for points history -->
     <LinearLayout
         android:id="@+id/buttonContainer3"
-        android:layout_width="320dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:translationY="-40sp"
+        android:translationY="-60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,10 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:stretchColumns="0,1,2"
-            app:layout_constraintTop_toBottomOf="@id/pointsContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:stretchColumns="0,1,2">
 
             <!-- Encabezado de la tabla -->
             <TableRow>
@@ -209,7 +204,6 @@
 
             <!-- Otras filas de datos según sea necesario -->
         </TableLayout>
-
 
     </LinearLayout>
 
