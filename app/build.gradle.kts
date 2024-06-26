@@ -10,6 +10,7 @@ android {
     namespace = "com.example.naturetrustbank"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.example.naturetrustbank"
         minSdk = 24
@@ -76,11 +77,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    // Importar Firebase Bill of Materials
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.airbnb.android:lottie:6.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)

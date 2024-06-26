@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
+import kotlin.random.Random
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
@@ -24,10 +25,10 @@ import com.example.naturetrustbank.databinding.FragmentRewardsBinding
 import com.example.naturetrustbank.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-
 import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 import java.util.*
-import kotlin.random.Random
 
 class RewardsFragment : Fragment() {
 
@@ -38,10 +39,13 @@ class RewardsFragment : Fragment() {
     private lateinit var usuario: Usuario
     private lateinit var bluetoothAdapter: BluetoothAdapter
     private var bluetoothSocket: BluetoothSocket? = null
-    private val deviceAddress = "XX:XX:XX:XX:XX:XX" // Dirección MAC del módulo HC-06
+    private lateinit var inputStream: InputStream
+    private lateinit var outputStream: OutputStream
+    private val deviceAddress = "00:22:09:01:C2:7D" // Dirección MAC del módulo HC-06
     private val uuid: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB") // UUID para SPP
     private val REQUEST_ENABLE_BT = 1
     private val REQUEST_BLUETOOTH_PERMISSIONS = 2
+    private var isConnected = false // Bandera para mantener el estado de la conexión
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,8 +76,9 @@ class RewardsFragment : Fragment() {
     }
 
     private fun checkBluetoothPermissionsAndConnect() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_CONNECT), REQUEST_BLUETOOTH_PERMISSIONS)
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN), REQUEST_BLUETOOTH_PERMISSIONS)
         } else {
             showBluetoothWaitingDialog()
         }
@@ -83,6 +88,7 @@ class RewardsFragment : Fragment() {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_bluetooth_waiting, null)
         val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
         val checkMark = dialogView.findViewById<ImageView>(R.id.checkMark)
+        val cancelMark = dialogView.findViewById<ImageView>(R.id.cancelMark)
         val textViewStatus = dialogView.findViewById<TextView>(R.id.textViewStatus)
 
         val dialog = AlertDialog.Builder(context)
@@ -95,17 +101,22 @@ class RewardsFragment : Fragment() {
         // Connect to Bluetooth device
         connectToBluetoothDevice()
 
-        // Simulate Bluetooth confirmation after a delay (replace with actual Bluetooth handling code)
+        // Handle connection result
         Handler(Looper.getMainLooper()).postDelayed({
-            // Simulate receiving Bluetooth signal confirmation
-            progressBar.visibility = View.GONE
-            checkMark.visibility = View.VISIBLE
-            textViewStatus.text = "Conexión establecida"
+            if (isConnected) {
+                progressBar.visibility = View.GONE
+                checkMark.visibility = View.VISIBLE
+                textViewStatus.text = "Conexión establecida"
+                setupBluetoothCommunication()
+                aumentarPuntos()
+            } else {
+                progressBar.visibility = View.GONE
+                cancelMark.visibility = View.VISIBLE
+                textViewStatus.text = "Error al conectar"
+                Toast.makeText(requireContext(), "Error al conectar con el dispositivo Bluetooth", Toast.LENGTH_SHORT).show()
+            }
 
-            // Aumentar puntos después de la confirmación
-            aumentarPuntos()
-
-            // Unregister receiver and dismiss dialog after some time
+            // Dismiss dialog after some time
             Handler(Looper.getMainLooper()).postDelayed({
                 dialog.dismiss()
             }, 2000)
@@ -114,52 +125,72 @@ class RewardsFragment : Fragment() {
     }
 
     private fun connectToBluetoothDevice() {
+        closeBluetoothConnection() // Ensure any previous connection is closed
+
         val device: BluetoothDevice? = bluetoothAdapter.getRemoteDevice(deviceAddress)
         device?.let {
             try {
-                if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    // Si los permisos no están concedidos, retornamos
-                    return
+                // Solicitar permisos BLUETOOTH y BLUETOOTH_ADMIN si no están concedidos
+                if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED ||
+                    ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(arrayOf(Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN), REQUEST_BLUETOOTH_PERMISSIONS)
+                } else {
+                    // Los permisos están concedidos, proceder con la conexión Bluetooth
+                    bluetoothSocket = it.createRfcommSocketToServiceRecord(uuid)
+                    bluetoothSocket?.connect()
+                    inputStream = bluetoothSocket!!.inputStream
+                    outputStream = bluetoothSocket!!.outputStream
+                    isConnected = true // Establecer la bandera de conexión a verdadero
                 }
-                bluetoothSocket = it.createRfcommSocketToServiceRecord(uuid)
-                bluetoothSocket?.connect()
-                // Aquí puedes manejar la conexión establecida, enviar/recibir datos, etc.
             } catch (e: IOException) {
                 e.printStackTrace()
-                Toast.makeText(requireContext(), "Error al conectar con el dispositivo Bluetooth", Toast.LENGTH_SHORT).show()
-                // Cierra el socket en caso de error
-                try {
-                    bluetoothSocket?.close()
-                } catch (closeException: IOException) {
-                    closeException.printStackTrace()
-                }
+                closeBluetoothConnection()
+                isConnected = false // Establecer la bandera de conexión a falso en caso de error
             }
         }
     }
 
+    private fun closeBluetoothConnection() {
+        try {
+            bluetoothSocket?.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            bluetoothSocket = null
+            isConnected = false
+        }
+    }
+
+    private fun setupBluetoothCommunication() {
+        if (isConnected) {
+            // Aquí puedes manejar la comunicación Bluetooth, enviar y recibir datos según tu necesidad
+            // Por ejemplo, enviar un comando al Arduino para solicitar confirmación
+            val command = "C\n"
+            try {
+                outputStream.write(command.toByteArray())
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Toast.makeText(requireContext(), "Error al enviar datos por Bluetooth", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            // Manejar el caso donde no está conectado
+            Toast.makeText(requireContext(), "No se ha establecido una conexión Bluetooth", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun aumentarPuntos() {
-        // Get current user's UID
         val uid = auth.currentUser?.uid
-
-        // Ensure UID is not null before proceeding
         uid?.let {
-            // Generate a random number between 25 and 120
-            val randomPoints = Random.nextInt(25, 121)
+            val randomPoints = Random.nextInt(5, 26)
 
-            // Query current points from Firebase
             databaseReference.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    // Get current user's points
                     val currentPoints = snapshot.child("puntos").getValue(Long::class.java) ?: 0
-
-                    // Calculate new points
                     val newPoints = currentPoints + randomPoints
 
-                    // Update points in Firebase
                     databaseReference.child(uid).child("puntos").setValue(newPoints)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                // Update local UI
                                 binding.textViewPoints.text = newPoints.toString()
                                 Toast.makeText(requireContext(), "Puntos actualizados correctamente", Toast.LENGTH_SHORT).show()
                             } else {
@@ -179,7 +210,8 @@ class RewardsFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_BLUETOOTH_PERMISSIONS -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     showBluetoothWaitingDialog()
                 } else {
                     Toast.makeText(requireContext(), "Permisos de Bluetooth denegados", Toast.LENGTH_SHORT).show()
@@ -191,11 +223,6 @@ class RewardsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        // Ensure receiver is unregistered to avoid memory leaks
-        try {
-            bluetoothSocket?.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        closeBluetoothConnection()
     }
 }
