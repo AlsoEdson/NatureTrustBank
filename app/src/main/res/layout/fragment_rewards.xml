@@ -122,88 +122,108 @@
             android:background="@drawable/rounded_buttom_scan" />
 
     </LinearLayout>
-
-    <!-- Table for points history -->
-    <LinearLayout
-        android:id="@+id/buttonContainer3"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:translationY="-60sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Table for points history -->
+        <LinearLayout
+            android:id="@+id/buttonContainer3"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:text="@string/historial_puntos"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:padding="8dp" />
+            android:orientation="vertical"
+            android:translationY="-40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp">
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:stretchColumns="0,1,2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/historial_puntos"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="8dp" />
 
-            <!-- Encabezado de la tabla -->
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="N° Puntos"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="8dp" />
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:stretchColumns="0,1,2">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="8dp" />
+                <!-- Encabezado de la tabla -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N° Puntos"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:padding="8dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lugar"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="8dp" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:padding="8dp" />
 
-            <!-- Filas de datos de ejemplo -->
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="120"
-                    android:textSize="16sp"
-                    android:padding="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lugar"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:padding="8dp" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2024-06-18"
-                    android:textSize="16sp"
-                    android:padding="8dp" />
+                <!-- Filas de datos de ejemplo -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textSize="16sp"
+                        android:padding="8dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="UNMSM"
-                    android:textSize="16sp"
-                    android:padding="8dp" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2024-06-18"
+                        android:textSize="16sp"
+                        android:padding="8dp" />
 
-            <!-- Otras filas de datos según sea necesario -->
-        </TableLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UNMSM"
+                        android:textSize="16sp"
+                        android:padding="8dp" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="21"
+                        android:textSize="16sp"
+                        android:padding="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2024-06-17"
+                        android:textSize="16sp"
+                        android:padding="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UNMSM"
+                        android:textSize="16sp"
+                        android:padding="8dp" />
+                </TableRow>
+
+            </TableLayout>
 
     </LinearLayout>
 

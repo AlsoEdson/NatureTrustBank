@@ -15,6 +15,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -28,6 +30,7 @@ import com.google.firebase.database.*
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 class RewardsFragment : Fragment() {
@@ -182,6 +185,7 @@ class RewardsFragment : Fragment() {
         val uid = auth.currentUser?.uid
         uid?.let {
             val randomPoints = Random.nextInt(5, 26)
+            val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
             databaseReference.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -193,6 +197,7 @@ class RewardsFragment : Fragment() {
                             if (task.isSuccessful) {
                                 binding.textViewPoints.text = newPoints.toString()
                                 Toast.makeText(requireContext(), "Puntos actualizados correctamente", Toast.LENGTH_SHORT).show()
+                                agregarFila(randomPoints.toString(), currentDate, "UNMSM")
                             } else {
                                 Toast.makeText(requireContext(), "Error al actualizar los puntos", Toast.LENGTH_SHORT).show()
                             }
@@ -204,6 +209,35 @@ class RewardsFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun agregarFila(nPuntos: String, fecha: String, lugar: String) {
+        val tableLayout: TableLayout = binding.root.findViewById(R.id.tableLayout)
+        val tableRow = TableRow(requireContext())
+
+        val nPuntosTextView = TextView(requireContext()).apply {
+            text = nPuntos
+            textSize = 16f
+            setPadding(8, 8, 8, 8)
+        }
+
+        val fechaTextView = TextView(requireContext()).apply {
+            text = fecha
+            textSize = 16f
+            setPadding(8, 8, 8, 8)
+        }
+
+        val lugarTextView = TextView(requireContext()).apply {
+            text = lugar
+            textSize = 16f
+            setPadding(8, 8, 8, 8)
+        }
+
+        tableRow.addView(nPuntosTextView)
+        tableRow.addView(fechaTextView)
+        tableRow.addView(lugarTextView)
+
+        tableLayout.addView(tableRow)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
