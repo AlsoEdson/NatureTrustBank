@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,12 @@ class LoginActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, LoginFragment.newInstance())
                 .commitNow()
+        }
+
+        auth = FirebaseAuth.getInstance()
+        val usuarioActual = auth.currentUser
+        if(usuarioActual!=null) {
+            showHome()
         }
 
         //Setup
