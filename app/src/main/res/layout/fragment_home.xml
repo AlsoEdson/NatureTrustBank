@@ -1,50 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backhome"
     tools:context=".ui.home.HomeFragment">
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¡Bienvenido a la revolución!"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:textColor="@color/swamp"
-        android:translationY="-280dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:translationY="-50dp"
-        app:lottie_rawRes="@raw/animate_recycling"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comienza a ganar puntos, canjea tus premios favoritos y comparte con tus amigos."
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:translationY="180dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/welcome_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Noticiario! 👋"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:layout_gravity="start"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/square"
+            android:layout_width="360dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rectangle"
+            android:backgroundTint="#F8F8F8"
+            android:layout_marginTop="16dp"
+            android:elevation="8dp"
+            android:padding="16dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/cambio_climatico"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="15dp"/>
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="En 2023, las temperaturas globales alcanzaron niveles récord debido al aumento de gases de efecto invernadero, intensificando fenómenos climáticos extremos como huracanes y olas de calor."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/date1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="18 de Junio, 2024"
+                android:textSize="14sp"
+                android:textColor="@color/swamp"
+                android:paddingTop="8dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/square1"
+            android:layout_width="360dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rectangle"
+            android:backgroundTint="#F8F8F8"
+            android:layout_marginTop="16dp"
+            android:elevation="8dp"
+            android:padding="16dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/reciclarbotellas"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="15dp"/>
+
+            <TextView
+                android:id="@+id/text12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reciclar una tonelada de plástico PET (el tipo más común de plástico de botellas) ahorra aproximadamente 3.8 barriles de petróleo crudo y evita la emisión de cerca de una tonelada métrica de gases de efecto invernadero."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/date12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="14 de Junio, 2024"
+                android:textSize="14sp"
+                android:textColor="@color/swamp"
+                android:paddingTop="8dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/square2"
+            android:layout_width="360dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rectangle"
+            android:backgroundTint="#F8F8F8"
+            android:layout_marginTop="16dp"
+            android:elevation="8dp"
+            android:padding="16dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/televisorenergy"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="15dp"/>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reciclar una botella de plástico puede ahorrar suficiente energía como para alimentar un televisor durante aproximadamente tres horas. Además, reduce la cantidad de desechos plásticos que terminan en los océanos y ecosistemas naturales, ayudando a proteger la vida marina y preservar el medio ambiente."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/date13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="28 de Abril, 2024"
+                android:textSize="14sp"
+                android:textColor="@color/swamp"
+                android:paddingTop="8dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
