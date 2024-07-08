@@ -44,7 +44,7 @@ class RewardsFragment : Fragment() {
     private var bluetoothSocket: BluetoothSocket? = null
     private lateinit var inputStream: InputStream
     private lateinit var outputStream: OutputStream
-    private val deviceAddress = "00:22:09:01:C2:7D" // Dirección MAC del módulo HC-06
+    private val deviceAddress = "98:D3:C1:FD:57:E3" // Dirección MAC del módulo HC-06
     private val uuid: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB") // UUID para SPP
     private val REQUEST_ENABLE_BT = 1
     private val REQUEST_BLUETOOTH_PERMISSIONS = 2
